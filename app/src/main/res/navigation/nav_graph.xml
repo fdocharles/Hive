@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.hive.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_customer_nav_graph"
+            app:destination="@id/customer_nav_graph" />
+        <action
+            android:id="@+id/action_loginFragment_to_service_provider_nav_graph"
+            app:destination="@id/service_provider_nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.hive.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.hive.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_service_provider_nav_graph"
+            app:destination="@id/service_provider_nav_graph" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_customer_nav_graph"
+            app:destination="@id/customer_nav_graph" />
+    </fragment>
+    <include app:graph="@navigation/customer_nav_graph" />
+    <include app:graph="@navigation/service_provider_nav_graph" />
+</navigation>
