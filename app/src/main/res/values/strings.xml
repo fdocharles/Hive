@@ -2,4 +2,11 @@
     <string name="app_name">Hive</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- bottom_nav_menu -->
+    <string name="home_title_bottom_nav_menu">Home</string>
+    <string name="service_title_bottom_nav_menu">Services</string>
+    <string name="notification_title_bottom_nav_menu">Notification</string>
+
 </resources>
