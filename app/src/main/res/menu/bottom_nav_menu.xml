@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home_nav"
+        android:id="@+id/customerHomeFragment"
         android:title="@string/home_title_bottom_nav_menu"
-        android:icon="@drawable/ic_default_home_24"/>
+        android:icon="@drawable/ic_default_home_24"
+        android:visible="true"
+        android:enabled="true"/>
+
     <item
-        android:id="@+id/service_nav"
+        android:id="@+id/serviceProviderListFragment"
         android:title="@string/service_title_bottom_nav_menu"
-        android:icon="@drawable/ic_default_service_24"/>
+        android:icon="@drawable/ic_default_service_24"
+        android:visible="true"
+        android:enabled="true"/>
     <item
         android:id="@+id/notification_nav"
         android:title="@string/notification_title_bottom_nav_menu"
-        android:icon="@drawable/ic_default_notifications_24"/>
+        android:icon="@drawable/ic_default_notifications_24"
+        android:visible="true"
+        android:enabled="true"/>
 </menu>
