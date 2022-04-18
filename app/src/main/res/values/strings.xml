@@ -4,9 +4,25 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+
     <!-- bottom_nav_menu -->
     <string name="home_title_bottom_nav_menu">Home</string>
     <string name="service_title_bottom_nav_menu">Services</string>
     <string name="notification_title_bottom_nav_menu">Notification</string>
+
+    <!-- fragment_app_user -->
+    <string name="title_fragment_app_user">I want to</string>
+    <string name="get_hired_fragment_app_user">Get Hired</string>
+    <string name="hire_fragment_app_user">Hire</string>
+
+    <!-- fragment_customer_services -->
+    <string name="construction_worker_text_fragment_customer_services">Construction</string>
+    <string name="cook_text_fragment_customer_services">Cook</string>
+    <string name="doctor_text_fragment_customer_services">Doctor</string>
+    <string name="investigator_text_fragment_customer_services">Investigator</string>
+    <string name="lawyer_text_fragment_customer_services">Lawyer</string>
+    <string name="plumber_text_fragment_customer_services">Plumber</string>
+    <string name="security_text_fragment_customer_services">Security</string>
+    <string name="waiter_text_fragment_customer_services">Waiter</string>
 
 </resources>
