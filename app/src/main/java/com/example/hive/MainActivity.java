@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 sharedPreferences = getPreferences(Context.MODE_PRIVATE);
                 sharedEditor = sharedPreferences.edit();
                 if (isItFirestTime()) {
-                    //frstTime.setText("First Time");
+                    navController.navigate(R.id.action_splashScreenFragment_to_appUserTypeSelectFragment);
                 } else {
                     navController.navigate(R.id.action_splashScreenFragment_to_loginFragment);
                 }
