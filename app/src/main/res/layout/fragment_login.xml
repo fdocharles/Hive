@@ -11,25 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+            android:textColor="@color/text"/>
+
         <ImageView
             android:id="@+id/loginImage1"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:layout_marginTop="20dp"
+            android:layout_below="@+id/tv_login"
             android:src="@drawable/register1">
 
         </ImageView>
-
-        <TextView
-            android:id="@+id/gradeEntryTopic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/loginImage1"
-            android:text="@string/login"
-            android:textSize="25sp"
-            android:textAllCaps="true"
-            android:textColor="@color/text"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tf_email"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="60dp"
             android:layout_marginVertical="20dp"
-            android:layout_below="@id/gradeEntryTopic"
+            android:layout_below="@id/loginImage1"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:textColorHint="@color/text"
             android:hint="@string/email">
