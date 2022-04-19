@@ -9,8 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/splash_background">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/loginImage1"
@@ -79,7 +78,7 @@
             android:layout_height="wrap_content"
             android:text="@string/login_b"
             android:layout_below="@id/tf_password"
-            android:backgroundTint="@color/text"
+            android:backgroundTint="@color/splash_background"
             android:textSize="18sp"
             android:layout_centerInParent="true">
         </com.google.android.material.button.MaterialButton>
