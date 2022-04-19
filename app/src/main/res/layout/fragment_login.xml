@@ -1,49 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    >
-<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LoginFragment">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    >
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="Email" />
-    <EditText
-        android:id="@+id/et_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Password" />
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        />
-    <Button
-        android:id="@+id/btn_move_to_register_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/splash_background">
 
+        <ImageView
+            android:id="@+id/loginImage1"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/register1">
 
+        </ImageView>
 
+        <TextView
+            android:id="@+id/gradeEntryTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/loginImage1"
+            android:text="@string/login"
+            android:textSize="25sp"
+            android:textAllCaps="true"
+            android:textColor="@color/text"/>
 
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginVertical="20dp"
+            android:layout_below="@id/gradeEntryTopic"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/text"
+            android:hint="@string/email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginVertical="20dp"
+            android:layout_below="@id/tf_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:textColorHint="@color/text"
+            app:endIconMode="password_toggle"
+            android:hint="@string/password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_b"
+            android:layout_below="@id/tf_password"
+            android:backgroundTint="@color/text"
+            android:textSize="18sp"
+            android:layout_centerInParent="true">
+        </com.google.android.material.button.MaterialButton>
+
+        <Button
+            android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/don_t_have_an_account_sign_up"
+            android:layout_below="@id/button_login"
+            android:textSize="14sp"
+            android:textColor="@color/highlight_background"
+            android:layout_centerInParent="true"
+            style="@style/Widget.MaterialComponents.Button.TextButton">
+        </Button>
+
+</RelativeLayout>
 </FrameLayout>
-</layout>
