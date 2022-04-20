@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:text="@string/login_b"
             android:layout_below="@id/tf_password"
-            android:backgroundTint="@color/splash_background"
+            android:backgroundTint="@color/button_primary"
             android:textSize="18sp"
             android:layout_centerInParent="true">
         </com.google.android.material.button.MaterialButton>

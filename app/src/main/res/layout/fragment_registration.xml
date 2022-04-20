@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
             android:layout_below="@id/rg_type"
-            android:backgroundTint="@color/splash_background"
+            android:backgroundTint="@color/button_primary"
             android:textSize="18sp"
             android:layout_centerInParent="true">
         </com.google.android.material.button.MaterialButton>
