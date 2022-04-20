@@ -1,12 +1,17 @@
 package com.example.hive;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +20,18 @@ import android.widget.Toast;
 
 import com.example.hive.databinding.FragmentLoginBinding;
 
+import com.example.hive.viewmodel.HiveViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.Map;
+import java.util.concurrent.Executor;
 
 
 public class LoginFragment extends Fragment {
@@ -27,11 +39,14 @@ public class LoginFragment extends Fragment {
 
     /**
      * This fragment should handle the login form ,
-     *
      */
-    private static String TAG ="LoginFragment.class";
+    private static String TAG = "com.example.hive.LoginFragment.class";
     private FirebaseAuth mAuth;
     private FragmentLoginBinding binding;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedEditor;
+    private NavController navController;
+    // private HiveViewModel hiveViewModel = new HiveViewModel();
 
 
     @Override
@@ -39,21 +54,25 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+        NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.view_onboarding_container);
+        navController = navHostFragment.getNavController();
+
+        //On login Button Clicked checking users credentials in firebase database.
+        binding.buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = binding.etEmail.getText().toString();
-                String password = binding.etPassword.getText().toString();
-                //here will be the login logic
-
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_customerActivity);
+                Editable email = binding.etEmail.getText();
+                Editable password = binding.etPassword.getText();
+                if(email != null && password != null){
+                    checkLoginCredentials(email.toString(), password.toString());
+                }
 
             }
         });
 
-        binding.btnMoveToRegisterFragment.setOnClickListener(new View.OnClickListener() {
+        binding.buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment);
@@ -67,5 +86,67 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
+    public void checkLoginCredentials(String email, String password) {
+        mAuth = FirebaseAuth.getInstance();
+
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this.getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "checkLoginCredentials - LoginWithEmailAndPassword:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            String uid = user.getUid();
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            db.collection("users").document(uid)
+                                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                        Map<String, Object> userDetails = document.getData();
+                                        setLoggedInUserDetails(userDetails);
+                                        if ("Customer".equals((String) userDetails.get("user_type"))) {
+                                            navController.navigate(R.id.action_loginFragment_to_customerActivity);
+                                        } else if ("ServiceProvider".equals((String) userDetails.get("user_type"))) {
+                                            navController.navigate(R.id.action_loginFragment_to_customerActivity);
+                                        }
+
+                                    } else {
+                                        Log.w(TAG, "Error getting documents.", task.getException());
+                                    }
+                                }
+                            });
+
+
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "checkLoginCredentials - LoginWithEmailAndPassword:failure", task.getException());
+                            Toast.makeText(getContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                           // binding.loginError.setText("Invalid Credentials. Please retry");
+                            //updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    private void setLoggedInUserDetails(Map<String, Object> userDetails) {
+        sharedPreferences = getContext().getSharedPreferences("hive", Context.MODE_PRIVATE);
+        sharedEditor = sharedPreferences.edit();
+        sharedEditor.putBoolean("isUserLoggedIn", true);
+        sharedEditor.putString("user_type", (String) userDetails.get("user_type"));
+
+        sharedEditor.putString("name", (String) userDetails.get("name"));
+        sharedEditor.putString("mobile", (String) userDetails.get("mobile"));
+        sharedEditor.putString("email", (String) userDetails.get("email"));
+        sharedEditor.commit();
+        sharedEditor.apply();
+    }
 
 }
+

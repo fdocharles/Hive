@@ -9,11 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hive">
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true">
 
-        </activity>
         <activity
             android:name=".ServiceProviderActivity"
             android:exported="false" />

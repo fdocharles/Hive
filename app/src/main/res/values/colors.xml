@@ -13,4 +13,5 @@
     <color name="highlight_background">#0C3469</color>
     <color name="text">#0C3469</color>
     <color name="splash_background">#F7941D</color>
+    <color name="red">#FF0000</color>
 </resources>

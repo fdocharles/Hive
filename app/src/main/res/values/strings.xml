@@ -33,10 +33,8 @@
     <string name="name">Name</string>
     <string name="mobile">Mobile</string>
     <string name="city">City</string>
-    <string name="password">Password</string>
     <string name="customer">Customer</string>
     <string name="service_provider">Service Provider</string>
-    <string name="sign_up">Sign Up</string>
     <string name="already_have_an_account_sign_in">Already have an Account? Sign In!</string>
     <string name="todo">TODO</string>
 
