@@ -8,6 +8,12 @@
     <string name="home_title_bottom_nav_menu">Home</string>
     <string name="service_title_bottom_nav_menu">Services</string>
     <string name="notification_title_bottom_nav_menu">Notification</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="submit">submit</string>
+    <string name="login_b">LOGIN</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an Account? Sign Up!</string>
 
     <!-- fragment_app_user -->
     <string name="title_fragment_app_user">I want to</string>
@@ -23,5 +29,13 @@
     <string name="plumber_text_fragment_customer_services">Plumber</string>
     <string name="security_text_fragment_customer_services">Security</string>
     <string name="waiter_text_fragment_customer_services">Waiter</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="city">City</string>
+    <string name="customer">Customer</string>
+    <string name="service_provider">Service Provider</string>
+    <string name="already_have_an_account_sign_in">Already have an Account? Sign In!</string>
+    <string name="todo">TODO</string>
 
 </resources>
