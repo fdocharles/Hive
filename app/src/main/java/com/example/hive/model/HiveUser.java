@@ -2,40 +2,33 @@ package com.example.hive.model;
 
 public class HiveUser {
 
-    private String firstname;
-    private String lastname;
+    private String name;
+
     private String userType;
+    private String serviceType;
     private String uid;
-    private String contact;
+    private String mobile;
     private String email;
     private String dob;
+    private String hourlyRate;
+    private String city;
 
     public HiveUser(){}
 
-    public HiveUser(String firstname, String lastname, String userType, String uid, String contact, String email, String dob) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.userType = userType;
-        this.uid = uid;
-        this.contact = contact;
-        this.email = email;
-        this.dob = dob;
+    public String getHourlyRate() {
+        return hourlyRate;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public void setHourlyRate(String hourlyRate) {
+        this.hourlyRate = hourlyRate;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public String getName() {
+        return name;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUserType() {
@@ -46,6 +39,14 @@ public class HiveUser {
         this.userType = userType;
     }
 
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
     public String getUid() {
         return uid;
     }
@@ -54,12 +55,12 @@ public class HiveUser {
         this.uid = uid;
     }
 
-    public String getContact() {
-        return contact;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getEmail() {
@@ -76,5 +77,13 @@ public class HiveUser {
 
     public void setDob(String dob) {
         this.dob = dob;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

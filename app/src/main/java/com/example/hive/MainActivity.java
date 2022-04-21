@@ -1,22 +1,17 @@
 package com.example.hive;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
 import com.example.hive.databinding.ActivityMainBinding;
-import com.example.hive.viewmodel.HiveViewModel;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -29,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedEditor;
-    private FirebaseAuth mAuth;
-    private HiveViewModel hiveViewModel ;
+    private FirebaseAuth mAuth;;
+    private NavController navController;
 
 
     @Override
@@ -39,39 +34,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
        // DataBindingUtil.inflate(inflater,R.layout.fragment_splash_screen, container, false);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.view_onboarding_container);
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
+        NavigationUI.setupActionBarWithNavController(this,navController);
+
+        Bundle extras = getIntent().getExtras();
+        String startFragment = "";
+        if (extras != null) {
+            startFragment = extras.getString("fragment_name");
+            if(startFragment.equals("LoginFragment"))
+            navController.navigate(R.id.loginFragment);
+        }
+        else{
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+
+
+                    if (!isUserLoggedIn()) {
+                        navController.navigate(R.id.action_splashScreenFragment_to_appUserTypeSelectFragment);
+                    } else {
+                        String userType = getLoggedInUserType();
+                        if("Customer".equals(userType)){
+                            navController.navigate(R.id.action_splashScreenFragment_to_customerActivity);
+                        }
+                        else if("ServiceProvider".equals(userType)){
+                            navController.navigate(R.id.action_splashScreenFragment_to_serviceProviderActivity);
+                        }
+
+                        Log.i(TAG,"User_type : "+userType);
+                        //Get User details and show appropriate activity
+                    }
+                }
+            }, 3000);
+
+        }
+
         mAuth = FirebaseAuth.getInstance();
 
-        //Get ViewModel Instance
-        hiveViewModel = new ViewModelProvider(this).get(HiveViewModel.class);
         Log.i(TAG,"onCreate method");
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
 
-
-                if (!isUserLoggedIn()) {
-                    navController.navigate(R.id.action_splashScreenFragment_to_appUserTypeSelectFragment);
-                } else {
-                    String userType = getSavedUserType();
-                    if("Customer".equals(userType)){
-                        navController.navigate(R.id.action_splashScreenFragment_to_customerActivity);
-                    }
-                    else if("ServiceProvider".equals(userType)){
-
-                    }
-
-                    Log.i(TAG,"User_type : "+userType);
-                    //Get User details and show appropriate activity
-
-                   // navController.navigate(R.id.action_splashScreenFragment_to_loginFragment);
-                }
-
-
-            }
-        }, 3000);
-
-       // getSupportActionBar().hide();
+       getSupportActionBar().hide();
     }
 
     @Override
@@ -83,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             Log.i(TAG,"Current User :" + currentUser.getEmail());
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return navController.navigateUp();
     }
 
     //Checking sharedPreferences to check whether isUserLoggedIn flag value
@@ -97,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return isUserLoggedIn;
     }
-
-    public String getSavedUserType(){
+    //Checking sharedPreferences to check whether userType of loggedIn user
+    public String getLoggedInUserType(){
         sharedPreferences = getSharedPreferences("hive",Context.MODE_PRIVATE);
         return sharedPreferences.getString("user_type",null);
     }

@@ -1,4 +1,4 @@
-package com.example.hive;
+package com.example.hive.ui.onboarding;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -18,9 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.hive.R;
 import com.example.hive.databinding.FragmentLoginBinding;
 
-import com.example.hive.viewmodel.HiveViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,10 +28,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.Map;
-import java.util.concurrent.Executor;
 
 
 public class LoginFragment extends Fragment {
@@ -40,13 +38,12 @@ public class LoginFragment extends Fragment {
     /**
      * This fragment should handle the login form ,
      */
-    private static String TAG = "com.example.hive.LoginFragment.class";
+    private static String TAG = "com.example.hive.ui.onboarding.LoginFragment.class";
     private FirebaseAuth mAuth;
     private FragmentLoginBinding binding;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedEditor;
     private NavController navController;
-    // private HiveViewModel hiveViewModel = new HiveViewModel();
 
 
     @Override
@@ -108,11 +105,11 @@ public class LoginFragment extends Fragment {
                                         DocumentSnapshot document = task.getResult();
                                         Log.d(TAG, document.getId() + " => " + document.getData());
                                         Map<String, Object> userDetails = document.getData();
-                                        setLoggedInUserDetails(userDetails);
+                                        setLoggedInUserDetails(userDetails,document.getId());
                                         if ("Customer".equals((String) userDetails.get("user_type"))) {
                                             navController.navigate(R.id.action_loginFragment_to_customerActivity);
                                         } else if ("ServiceProvider".equals((String) userDetails.get("user_type"))) {
-                                            navController.navigate(R.id.action_loginFragment_to_customerActivity);
+                                            navController.navigate(R.id.action_loginFragment_to_serviceProviderActivity);
                                         }
 
                                     } else {
@@ -122,28 +119,28 @@ public class LoginFragment extends Fragment {
                             });
 
 
-                            //updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "checkLoginCredentials - LoginWithEmailAndPassword:failure", task.getException());
                             Toast.makeText(getContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                           // binding.loginError.setText("Invalid Credentials. Please retry");
-                            //updateUI(null);
                         }
                     }
                 });
     }
 
-    private void setLoggedInUserDetails(Map<String, Object> userDetails) {
+    private void setLoggedInUserDetails(Map<String, Object> userDetails, String uid) {
         sharedPreferences = getContext().getSharedPreferences("hive", Context.MODE_PRIVATE);
         sharedEditor = sharedPreferences.edit();
         sharedEditor.putBoolean("isUserLoggedIn", true);
         sharedEditor.putString("user_type", (String) userDetails.get("user_type"));
-
+        sharedEditor.putString("city", (String) userDetails.get("city"));
         sharedEditor.putString("name", (String) userDetails.get("name"));
         sharedEditor.putString("mobile", (String) userDetails.get("mobile"));
         sharedEditor.putString("email", (String) userDetails.get("email"));
+        sharedEditor.putString("uid", uid);
+        if(userDetails.get("service_type") != null){
+            sharedEditor.putString("service_type", (String) userDetails.get("service_type"));
+        }
         sharedEditor.commit();
         sharedEditor.apply();
     }

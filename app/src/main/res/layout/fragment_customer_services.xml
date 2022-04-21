@@ -1,229 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CustomerServicesFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        tools:context=".ui.customer.CustomerServicesFragment">
 
-        <LinearLayout
-            android:id="@+id/row_1"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/row_1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:orientation="horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/construction_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/construction_worker" />
 
-                    <TextView
+
+                        <LinearLayout
+                            android:id="@+id/construction_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/construction_worker" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_horizontal"
+                                android:text="@string/construction_worker_text_fragment_customer_services"
+                                android:textColor="@color/text" />
+                        </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:id="@+id/cook_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/construction_worker_text_fragment_customer_services" />
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/cook" />
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/cook_text_fragment_customer_services"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout
-                    android:id="@+id/cook_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/cook" />
-
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/cook_text_fragment_customer_services" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/doctor_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/doctor" />
-
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/doctor_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/doctor_text_fragment_customer_services" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content" />
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/doctor" />
 
-                <LinearLayout
-                    android:id="@+id/investigator_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/doctor_text_fragment_customer_services"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/investigator" />
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/investigator_text_fragment_customer_services" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/lawyer_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/lawyer" />
-
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/investigator_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/lawyer_text_fragment_customer_services" />
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/investigator" />
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/investigator_text_fragment_customer_services"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout
-                    android:id="@+id/plumber_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/plumber" />
-
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/plumber_text_fragment_customer_services" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/security_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/security" />
-
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/lawyer_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/security_text_fragment_customer_services" />
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/lawyer" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/lawyer_text_fragment_customer_services"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:id="@+id/plumber_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/plumber" />
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/plumber_text_fragment_customer_services"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout
-                    android:id="@+id/waiter_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/waiter" />
-
-                    <TextView
-                        android:layout_width="130dp"
+                    <LinearLayout
+                        android:id="@+id/security_layout"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/text"
-                        android:text="@string/waiter_text_fragment_customer_services" />
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/security" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/security_text_fragment_customer_services"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:id="@+id/waiter_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/waiter" />
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/waiter_text_fragment_customer_services"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+</layout>

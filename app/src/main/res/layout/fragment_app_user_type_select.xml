@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:background="@color/main_background"
-        tools:context=".AppUserTypeSelectFragment">
+        tools:context=".ui.onboarding.AppUserTypeSelectFragment">
 
         <TextView
             android:id="@+id/title_app_user"

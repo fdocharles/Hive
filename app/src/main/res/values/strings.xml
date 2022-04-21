@@ -37,5 +37,19 @@
     <string name="service_provider">Service Provider</string>
     <string name="already_have_an_account_sign_in">Already have an Account? Sign In!</string>
     <string name="todo">TODO</string>
+    <string name="service_type">Service Type</string>
+    <string name="hourly_rate">Hourly Rate</string>
+
+
+    <string-array name="array_service_type">
+        <item>Constructor</item>
+        <item>Cook</item>
+        <item>Doctor</item>
+        <item>Investigator</item>
+        <item>Lawyer</item>
+        <item>Plumber</item>
+        <item>Security</item>
+        <item>Waiter</item>
+    </string-array>
 
 </resources>
