@@ -13,4 +13,13 @@
         android:name="com.example.hive.ServiceProviderListFragment"
         android:label="fragment_service_provider_list"
         tools:layout="@layout/fragment_service_provider_list" />
+    <fragment
+        android:id="@+id/customerServicesFragment"
+        android:name="com.example.hive.CustomerServicesFragment"
+        android:label="fragment_customer_services"
+        tools:layout="@layout/fragment_customer_services" >
+        <action
+            android:id="@+id/action_customerServicesFragment_to_serviceProviderListFragment"
+            app:destination="@id/serviceProviderListFragment" />
+    </fragment>
 </navigation>

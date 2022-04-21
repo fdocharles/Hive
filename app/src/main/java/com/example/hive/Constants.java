@@ -9,4 +9,5 @@ public class Constants {
     public static final String SERVICE_PLUMBER = "PLUMBER";
     public static final String SERVICE_SECURITY = "SECURITY";
     public static final String SERVICE_WAITER = "WAITER";
+    public static final String KEY_SELECTED_SERVICE = "SELECTED_SERVICE";
 }
