@@ -3,14 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/customer_nav_graph.xml"
-    app:startDestination="@id/customerHomeFragment">
-    <fragment
-        android:id="@+id/customerHomeFragment"
-        android:name="com.example.hive.CustomerHomeFragment"
-        android:label="CustomerHomeFragment" />
+    app:startDestination="@id/customerServicesFragment">
+
     <fragment
         android:id="@+id/serviceProviderListFragment"
         android:name="com.example.hive.ServiceProviderListFragment"
         android:label="fragment_service_provider_list"
-        tools:layout="@layout/fragment_service_provider_list" />
+        tools:layout="@layout/fragment_service_provider_list" >
+        <argument
+            android:name="service_type"
+            app:argType="string"
+            android:defaultValue="All" />
+        <action
+            android:id="@+id/action_serviceProviderListFragment_to_serviceProviderDetailsFragment"
+            app:destination="@id/serviceProviderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customerServicesFragment"
+        android:name="com.example.hive.ui.customer.CustomerServicesFragment"
+        android:label="CustomerServicesFragment" >
+        <action
+            android:id="@+id/action_customerServicesFragment_to_serviceProviderListFragment"
+            app:destination="@id/serviceProviderListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceProviderDetailsFragment"
+        android:name="com.example.hive.ui.customer.ServiceProviderDetailsFragment"
+        android:label="fragment_service_provider_details"
+        tools:layout="@layout/fragment_service_provider_details" >
+        <action
+            android:id="@+id/action_serviceProviderDetailsFragment_to_serviceProviderListFragment"
+            app:destination="@id/serviceProviderListFragment"
+            app:popUpTo="@id/serviceProviderDetailsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentListFragment"
+        android:name="com.example.hive.AppointmentListFragment"
+        android:label="AppointmentListFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.hive.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

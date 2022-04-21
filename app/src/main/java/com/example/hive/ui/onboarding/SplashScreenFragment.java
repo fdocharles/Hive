@@ -1,15 +1,15 @@
-package com.example.hive;
+package com.example.hive.ui.onboarding;
 
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.hive.R;
 import com.example.hive.databinding.FragmentSplashScreenBinding;
 
 
@@ -20,7 +20,7 @@ public class SplashScreenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding =  DataBindingUtil.inflate(inflater,R.layout.fragment_splash_screen, container, false);
+        binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_splash_screen, container, false);
 
         View view =binding.getRoot();
 

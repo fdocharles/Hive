@@ -11,10 +11,10 @@
         android:theme="@style/Theme.Hive">
 
         <activity
-            android:name=".ServiceProviderActivity"
+            android:name=".ui.serviceprovider.ServiceProviderActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerActivity"
+            android:name=".ui.customer.CustomerActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

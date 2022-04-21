@@ -1,4 +1,4 @@
-package com.example.hive;
+package com.example.hive.ui.onboarding;
 
 import android.os.Bundle;
 
@@ -6,15 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.hive.R;
 import com.example.hive.databinding.FragmentRegistrationBinding;
 import com.example.hive.model.UserType;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,10 +39,27 @@ public class RegistrationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_registration, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_registration, container, false);
         NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.view_onboarding_container);
         navController = navHostFragment.getNavController();
 
+
+        //Setting service type array to spinner dropdown
+        ArrayAdapter<CharSequence> serviceTypeAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.array_service_type, android.R.layout.simple_spinner_item);
+        serviceTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinnerServiceType.setAdapter(serviceTypeAdapter);
+
+        binding.rgUserType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if(checkedId == R.id.rb_service_provider){
+                    binding.spinnerServiceType.setVisibility(View.VISIBLE);
+                }else{
+                    binding.spinnerServiceType.setVisibility(View.GONE);
+                }
+            }
+        });
         //this will check the registration in firebase database
         binding.buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,24 +89,23 @@ public class RegistrationFragment extends Fragment {
         String password = binding.etPassword.getText().toString();
         String mobile = binding.etMobile.getText().toString();
         String name = binding.etName.getText().toString();
+        String city = binding.etCity.getText().toString();
        // String confirmPassword = binding.etConfirmPassword.getText().toString();
 
         Map<String,Object> hiveUserObject = new HashMap<>();
         hiveUserObject.put("email",email);
         hiveUserObject.put("mobile",mobile);
         hiveUserObject.put("name",name);
-        /*hiveUserObject.put("lastname",lastname);
+        hiveUserObject.put("city",city);
 
 
-        if(!password.equals(confirmPassword)){
-            Log.i(TAG,"Password : "+password +", Confirm Password : "+confirmPassword);
-            binding.registrationErrorMessage.setText("Please confirm password");
-            return;
-        }*/
+        UserType type  = UserType.Customer;
+        if( binding.rgUserType.getCheckedRadioButtonId() == R.id.rb_service_provider) {
+            if (binding.spinnerServiceType.getSelectedItem() != null){
+                hiveUserObject.put("service_type", binding.spinnerServiceType.getSelectedItem().toString());
 
-        UserType type  = UserType.ServiceProvider;
-        if( binding.rgUserType.getCheckedRadioButtonId() == R.id.rb_customer){
-            type = UserType.Customer;
+             }
+            type = UserType.ServiceProvider;
 
         }
         hiveUserObject.put("user_type",type.toString());
@@ -121,12 +139,10 @@ public class RegistrationFragment extends Fragment {
                                     });
 
 
-                            // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(getContext(), "Unsuccessful in Registration", Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
                     }
                 });
