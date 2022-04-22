@@ -137,6 +137,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- service type-->
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tf_service_type"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -145,6 +146,7 @@
                     android:layout_marginHorizontal="60dp"
                     android:layout_marginTop="5dp"
                     android:visibility="gone"
+                    android:enabled="false"
                     android:hint="Service Type"
                     android:textColorHint="@color/text">
 
