@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ServiceProviderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final List<HiveUser> users;
+    private int[] userImages;
 
     public interface OnItemClickListener {
         void onItemClick(HiveUser user);
@@ -37,6 +39,7 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<RecyclerVie
 
         public TextView email;
         public TextView uid;
+        public ImageView avatar;
        /* public TextView serviceType;
         public TextView credit;
         public TextView marks;*/
@@ -46,6 +49,7 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<RecyclerVie
             this.name = (TextView) itemView.findViewById(R.id.tv_name);
             this.mobile = (TextView) itemView.findViewById(R.id.tv_mobile);
             this.city = (TextView) itemView.findViewById(R.id.tv_city);
+            this.avatar = (ImageView) itemView.findViewById(R.id.service_provider_avatar);
 
             this.email = (TextView) itemView.findViewById(R.id.tv_email);
             this.uid = (TextView) itemView.findViewById(R.id.tv_uid);
@@ -68,6 +72,11 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<RecyclerVie
         //This line inflate the individual grade record layout
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_record_layout,parent,false);
         UserViewHolder viewHolder = new UserViewHolder(v);
+
+
+        userImages = new int[] { R.drawable.service_provider,R.drawable.service_provider_2 };
+
+
         return viewHolder;
     }
 
@@ -81,6 +90,7 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<RecyclerVie
 
         ((UserViewHolder) holder).uid.setText(user.getUid());
         ((UserViewHolder) holder).email.setText(user.getEmail());
+//        ((UserViewHolder) holder).avatar.setImageResource(userImages.);
 
         ((UserViewHolder) holder).bind(user,listener);
 

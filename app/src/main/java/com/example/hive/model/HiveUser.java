@@ -12,6 +12,7 @@ public class HiveUser {
     private String dob;
     private String hourlyRate;
     private String city;
+    private String avatar;
 
     public HiveUser(){}
 
