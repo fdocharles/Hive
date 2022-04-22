@@ -65,7 +65,7 @@ public class ProfileFragment extends Fragment {
             userDetails.put("email", binding.etEmail.getText().toString());
             userDetails.put("city", binding.etCity.getText().toString());
             userDetails.put("mobile", binding.etMobile.getText().toString());
-
+            userDetails.put("user_type",user_type);
 
             if ("ServiceProvider".equals(user_type)) {
                 userDetails.put("service_type", binding.etServiceType.getText().toString());
@@ -80,6 +80,7 @@ public class ProfileFragment extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        setLoggedInUserDetails(userDetails,uid);
                                         Toast.makeText(getContext(), "Successfully Updated Details", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(getContext(), "Error Updating Details", Toast.LENGTH_SHORT).show();
@@ -127,5 +128,21 @@ public class ProfileFragment extends Fragment {
         sharedPreferences = getContext().getSharedPreferences("hive", Context.MODE_PRIVATE);
         String uid = sharedPreferences.getString("uid", null);
         return uid;
+    }
+
+    private void setLoggedInUserDetails(Map<String, String> userDetails, String uid) {
+        sharedPreferences = getContext().getSharedPreferences("hive", Context.MODE_PRIVATE);
+        sharedEditor = sharedPreferences.edit();
+        sharedEditor.putString("user_type", (String) userDetails.get("user_type"));
+        sharedEditor.putString("city", (String) userDetails.get("city"));
+        sharedEditor.putString("name", (String) userDetails.get("name"));
+        sharedEditor.putString("mobile", (String) userDetails.get("mobile"));
+        sharedEditor.putString("email", (String) userDetails.get("email"));
+        sharedEditor.putString("uid", uid);
+        if(userDetails.get("service_type") != null){
+            sharedEditor.putString("service_type", (String) userDetails.get("service_type"));
+        }
+        sharedEditor.commit();
+        sharedEditor.apply();
     }
 }
