@@ -17,6 +17,11 @@
         <action
             android:id="@+id/action_serviceProviderListFragment_to_serviceProviderDetailsFragment"
             app:destination="@id/serviceProviderDetailsFragment" />
+        <action
+            android:id="@+id/action_serviceProviderListFragment_to_customerServicesFragment"
+            app:destination="@id/customerServicesFragment"
+            app:popUpTo="@id/serviceProviderListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/customerServicesFragment"
