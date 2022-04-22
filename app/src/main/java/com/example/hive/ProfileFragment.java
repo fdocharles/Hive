@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -30,10 +31,17 @@ public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedEditor;
+    private AppCompatActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        activity =  ((AppCompatActivity)getActivity());
+        activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
         setLoggedInUserDetails();
@@ -83,7 +91,7 @@ public class ProfileFragment extends Fragment {
 
         });
 
-        return binding.getRoot();
+        return  binding.getRoot();
     }
 
     private void removedLoggedInUserDetails() {

@@ -66,6 +66,8 @@ public class LoginFragment extends Fragment {
                     checkLoginCredentials(email.toString(), password.toString());
                 }
 
+                //navController.navigate(R.id.action_loginFragment_to_customerActivity);
+
             }
         });
 

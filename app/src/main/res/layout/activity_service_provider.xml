@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/button_primary"
+        android:background="@color/main_background"
         app:menu="@menu/service_provider_menu"/>
 
 
